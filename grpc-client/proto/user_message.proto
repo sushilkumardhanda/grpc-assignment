@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "/proto;userpb";
+
+message User {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string city =4;
+    string phone=5;
+    double height=6;
+    bool married=7;
+}
+
+message UserIDs {
+    repeated string ids = 1;
+}
+
+service UserService {
+    rpc GetUserByID (UserIDs) returns (User);
+    rpc GetUsersByIDs (UserIDs) returns (stream User);
+    rpc SearchUsers (User) returns (stream User);
+}
